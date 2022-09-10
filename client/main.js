@@ -6,6 +6,8 @@ const form = document.querySelector('form')
 const baseURL= `http://localhost:4000/api/`
 
 
+
+
 //// compliment Button
 const complimentBtn = document.getElementById("complimentButton")
 
@@ -19,6 +21,9 @@ const getCompliment = () => {
 };
 
 complimentBtn.addEventListener('click', getCompliment)
+
+
+
 
 ////// fortune Button
 
@@ -34,6 +39,10 @@ const getFortune = () => {
 
 fortuneBtn.addEventListener('click', getFortune)
 
+
+
+
+
 ////// Show inspiration object
 
 const inspirationCallback = ({data: inspiration}) => displayInspiration(inspiration)
@@ -46,7 +55,8 @@ const writeInspiration = body => axios.post(baseURL, body).then(inspirationCallb
 
 const deleteInspiration = id => axios.delete(`${baseURL}/${id}`).then(inspirationCallback).catch(errCallback)
 
-// make new inspiration
+
+// submit new inspiration
  function submitHandler(e) {
     e.preventDefault()
 
@@ -60,7 +70,7 @@ const deleteInspiration = id => axios.delete(`${baseURL}/${id}`).then(inspiratio
 
     writeInspiration(bodyObj)
  }
-
+//// inner html for inpiration objects
  function createInspirationCard(inspiration) {
     const inspirationCard = document.createElement('div')
     inspirationCard.classList.add('inspiration-card')
@@ -72,6 +82,8 @@ const deleteInspiration = id => axios.delete(`${baseURL}/${id}`).then(inspiratio
     inspirationContainer.appendChild(inspirationCard)
  }
 
+
+ //// to see 
  function displayInspiration(arr) {
     inspirationContainer.innerHTML = ``
     for (let i =0; i < arr.length; i++) {
