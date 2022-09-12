@@ -1,6 +1,8 @@
 let inspiration = require('./db.json')
 let inspirationID = 5;
 
+///Kyle example
+weapons = ['Lightsaber', 'The One Ring', 'The Elder Wand']
 module.exports = {
 
     getCompliment: (req, res) => {
@@ -11,6 +13,34 @@ module.exports = {
         let randomCompliment = compliments[randomIndex];
       
         res.status(200).send(randomCompliment);
+    },
+
+    getWeapons: (req, res) => {
+        res.status(200).send(weapons)
+    },
+
+    addWeapon: (req, res) => {
+        let {item} = req.body
+        weapons.push(item)
+
+        res.status(200).send(weapons)
+
+    },
+
+    deleteWeapon: (req, res) => {
+        let index = req.params.id
+
+        weapons.splice(index, 1)
+
+        res.status(200).send(weapons)
+    },
+
+    editWeapon: (req, res) => {
+        let index = req.prams.id
+        let {item} = req.body//destructured item other do req.body.item
+        weapons.splice(index, 1, item)
+
+        req.status(200).send(weapons)
     },
 
     getFortune: (req, res) => {
