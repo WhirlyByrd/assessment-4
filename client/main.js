@@ -72,16 +72,15 @@ getInspirationBtn.addEventListener('click', getInspiration)
 //add inspiration form
 const addForm = document.getElementById('addForm')
 
-const addQuote = document.getElementById('addQuote')
-const addSource = document.getElementById('addSource')
+const addInput= document.getElementById('addInput')
+
 
 const addNewInspiration = (event) => {
     event.preventDefault()
     console.log('front-end hit')
 
     let bodyObj = {
-        quote: addQuote.value,
-        source: addSource.value
+        item: addInput.value
     }
 
     axios.post(`${baseURL}/api/addInspiration`, bodyObj)
@@ -96,15 +95,15 @@ const addNewInspiration = (event) => {
                 newInspiration.textContent = inspiration[i]
                 inspirationList.appendChild(newInspiration)
             }
-            addQuote.value = ''
-            addSource.value = ''
+            addInput.value = ''
+        
         })
         .catch((err) => {
             console.log(err)
         })
 }
 
-addForm.addEventListener('submit', addInspiration)
+addForm.addEventListener('submit', addInput)
 
 
 //delete inspiration
@@ -129,7 +128,7 @@ const deleteQuote = (event) => {
         })
 }
 
-deleteForm.addEventListener('submit', deleteItem)
+deleteForm.addEventListener('submit', deleteQuote)
 
 
 ///edit inspiration
@@ -137,14 +136,12 @@ deleteForm.addEventListener('submit', deleteItem)
 const editForm = document.getElementById('editForm')
 const editIndex = document.getElementById('editIndex')
 const editQuote = document.getElementById('editQuote')
-const editSource = document.getElementById('editSource')
 
 const editInspiration = (event) => {
     event.preventDefault()
 
     let bodyObj = {
-        quote: editQuote.value,
-        source: editSource.value
+        item: editInput.value
     }
 
     axios.put(`${baseURL}/api/editInspiration/:id${editIndex.value}`, bodyObj)
@@ -160,8 +157,6 @@ const editInspiration = (event) => {
             
             editIndex.value = ''
             editQuote.value = ''
-            editSource.value = ''
-
         })
 }
- editForm.addEventListener('submit', editInspiration)
+editForm.addEventListener('submit', editInspiration)

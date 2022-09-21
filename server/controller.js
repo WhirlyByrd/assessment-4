@@ -2,14 +2,11 @@ let inspiration = require('./db.json')
 let inspirationID = 2;
 
 inspiration = [
-    {
-        quote: `“There are two ways of spreading light: to be the candle or the mirror that reflects it.”`,
-        source: "- Edith Wharton",
-    },
-    {
-        quote: `“The most wasted of days is one without laughter.”`,
-        source: "- E.E. Cummings"
-    }
+    `“There are two ways of spreading light: to be the candle or the mirror that reflects it." - Edith Wharton`,
+        
+    
+   `“The most wasted of days is one without laughter.” - E.E. Cummings`,
+           
 
 ]
 
@@ -44,8 +41,8 @@ module.exports = {
     },
 
     addInspiration: (req, res) => {
-        let {quote, source} = req.body
-        inspiration.push(quote, source)
+        let {item} = req.body
+        inspiration.push(item)
 
         res.status(200).send(inspiration)
     },
@@ -60,9 +57,9 @@ module.exports = {
 
     editInspiration: (req, res) => {
         let index = req.params.id
-        let {quote, source} = req.body
+        let {item} = req.body
 
-        inspiration.splice(index, 1, quote, source)
+        inspiration.splice(index, 1, item)
 
         req.status(200).send(inspiration)
     }   
