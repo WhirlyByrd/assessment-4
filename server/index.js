@@ -9,20 +9,22 @@ app.use(cors());
 
 
 // get compliment
-const { getCompliment, getFortune, getInspiration, deleteInspiration, writeInspiration, getWeapons, addWeapon, deleteWeapon, editWeapon } = require('./controller');
+const { getCompliment, getFortune, getInspiration, addInspiration, deleteInspiration, editInspiration} = require('./controller');
 
-app.get('/api/weapons', getWeapons);
-app.post('/api/addWeapon', addWeapon);
-app.delete('/api/deleteWeapon/:id', deleteWeapon)
-app.put('/api/editWeapon/:id', editWeapon)
+
+
+
+
 
 app.get('/api/compliment', getCompliment);
 
 app.get('/api/fortune', getFortune);
 
+
 app.get('/api/inspiration', getInspiration);
-app.delete('api/inspiration/:id', deleteInspiration)
-app.post('api/inspiration', writeInspiration)
+app.post('api/addInspiration', addInspiration)
+app.delete('api/deleteInspiration/:id', deleteInspiration)
+app.put('api/editInspiration/:id', editInspiration)
 
 
 

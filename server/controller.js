@@ -1,8 +1,21 @@
 let inspiration = require('./db.json')
-let inspirationID = 5;
+let inspirationID = 2;
 
-///Kyle example
-weapons = ['Lightsaber', 'The One Ring', 'The Elder Wand']
+inspiration = [
+    {
+        quote: `“There are two ways of spreading light: to be the candle or the mirror that reflects it.”`,
+        source: "- Edith Wharton",
+    },
+    {
+        quote: `“The most wasted of days is one without laughter.”`,
+        source: "- E.E. Cummings"
+    }
+
+]
+
+    
+
+
 module.exports = {
 
     getCompliment: (req, res) => {
@@ -13,34 +26,6 @@ module.exports = {
         let randomCompliment = compliments[randomIndex];
       
         res.status(200).send(randomCompliment);
-    },
-
-    getWeapons: (req, res) => {
-        res.status(200).send(weapons)
-    },
-
-    addWeapon: (req, res) => {
-        let {item} = req.body
-        weapons.push(item)
-
-        res.status(200).send(weapons)
-
-    },
-
-    deleteWeapon: (req, res) => {
-        let index = req.params.id
-
-        weapons.splice(index, 1)
-
-        res.status(200).send(weapons)
-    },
-
-    editWeapon: (req, res) => {
-        let index = req.prams.id
-        let {item} = req.body//destructured item other do req.body.item
-        weapons.splice(index, 1, item)
-
-        req.status(200).send(weapons)
     },
 
     getFortune: (req, res) => {
@@ -55,35 +40,32 @@ module.exports = {
     /////// inspiration
 
     getInspiration: (req, res) => {
-            res.status(200).send(inspiration)
-        }, 
-
-    
-    writeInspiration: (req, res) => {
-        const {quote, source} = req.body;
-
-        let newInspiration = {
-            quote,
-            source,
-            id: inspirationID
-        }
-        console.log(newInspiration);
-        inspiration.push(newInspiration)
-        inspirationID++;
         res.status(200).send(inspiration)
+    },
 
+    addInspiration: (req, res) => {
+        let {quote, source} = req.body
+        inspiration.push(quote, source)
 
+        res.status(200).send(inspiration)
     },
 
     deleteInspiration: (req, res) => {
-        let index = inspiration.findIndex(elem => elem.id === +req.params.id)
-        inspiration.splice(index, 1)
-        res.status(200).end(inspiration)
-    }
+        let index = req.params.id
 
-    
-    
-    
+        inspiration.splice(index, 1)
+
+        res.status(200).send(weapons)
+    },
+
+    editInspiration: (req, res) => {
+        let index = req.params.id
+        let {quote, source} = req.body
+
+        inspiration.splice(index, 1, quote, source)
+
+        req.status(200).send(inspiration)
+    }   
 
 }
 
